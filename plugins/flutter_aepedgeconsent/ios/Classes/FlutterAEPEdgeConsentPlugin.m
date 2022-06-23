@@ -37,6 +37,9 @@ governing permissions and limitations under the License.
 - (void)handleGetConsent:(FlutterMethodCall *) call result:(FlutterResult)result {
      [AEPMobileEdgeConsent getConsents:^(NSDictionary* consents, NSError* error) {
         result(consents);
+       if (error) {
+        result([self flutterErrorFromNSError:error]);
+       }
     }];
 }
 
@@ -45,4 +48,10 @@ governing permissions and limitations under the License.
     result(nil);
 }
 
+- (FlutterError *)flutterErrorFromNSError:(NSError *) error {
+    return [FlutterError errorWithCode:[NSString stringWithFormat:@"%ld", (long)error.code]
+                         message:error.localizedDescription
+                         details:error.domain];
+}
 @end
+

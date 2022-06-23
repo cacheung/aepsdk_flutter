@@ -18,15 +18,15 @@
     [AEPMobileCore setWrapperType:AEPWrapperTypeFlutter];
 
      // TODO: Set up the preferred Environment File ID from your mobile property configured in Data Collection UI
-    NSString* ENVIRONMENT_FILE_ID = @"YOUR-APP-ID";
+    NSString* ENVIRONMENT_FILE_ID = @"94f571f308d5/959a617a4a15/launch-de09b8b97921-development";
     
     const UIApplicationState appState = application.applicationState;
 
     NSArray *extensionsToRegister = @[AEPMobileIdentity.class, 
                                       AEPMobileLifecycle.class, 
                                       AEPMobileSignal.class, 
-                                      AEPMobileAssurance.class, 
-                                      AEPMobileEdgeConsent.class,];
+                                      AEPMobileAssurance.class
+                                      ];
     
     [AEPMobileCore registerExtensions:extensionsToRegister completion:^{
         if (appState != UIApplicationStateBackground) {

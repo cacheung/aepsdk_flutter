@@ -36,11 +36,11 @@ class Messaging {
         _delegate?.onShow(arguments['message']);
         return null;
       case 'shouldSaveMessage':
-        return _delegate?.shouldSaveMessage(arguments['message'] as Message) ??
-            false;
+        return true;
       case 'shouldShowMessage':
-        return _delegate?.shouldShowMessage(arguments['message'] as Message) ??
-            false;
+        print("messaging resulte here -----");
+        return true;
+        false;
       case 'urlLoaded':
         _delegate?.urlLoaded(arguments['url'], arguments['message']);
         return null;

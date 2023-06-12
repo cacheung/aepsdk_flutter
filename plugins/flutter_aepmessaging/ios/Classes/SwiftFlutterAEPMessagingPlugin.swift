@@ -230,21 +230,22 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
         let incomingMessage = fullscreenMessage.parent as! Message
         var shouldShow = false
         channel.invokeMethod(
-            "onShouldSaveMessage",
+            "shouldSaveMessage",
             arguments: [
                 "message": dataBridge.transformToFlutterMessage(
                     message: incomingMessage
                 )
             ],
             result: { (result: Any?) -> Void in
-                let shouldSaveMessage = result as! Bool
-                if shouldSaveMessage {
+                //let shouldSaveMessage = result as! Bool
+                if let shouldSaveMessage = result as? Bool {
                     self.messageCache[incomingMessage.id] = incomingMessage
                 }
             }
         )
+        
         channel.invokeMethod(
-            "flutterShouldShowMessage",
+            "shouldShowMessage",
             arguments: [
                 "message": [
                     "message": dataBridge.transformToFlutterMessage(
@@ -253,7 +254,9 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
                 ]
             ],
             result: { (result: Any?) -> Void in
-                shouldShow = result as! Bool
+                if let shouldShowMessage = result as? Int {
+                    shouldShow = shouldShowMessage == 1 ? true : false
+                }
             }
         )
         return shouldShow

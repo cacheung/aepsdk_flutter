@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'AEPEdgeIdentity', '~> 1.0'
-  s.platform = :ios, '10.0'
+  s.dependency 'AEPEdgeIdentity', '~> 4.0'
+  s.platform = :ios, '11.0'
   s.static_framework = true
 
 end

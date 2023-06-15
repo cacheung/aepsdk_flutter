@@ -222,7 +222,7 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
             }
         }
     }
-
+    
     public func onShow(message: Showable) {
         public func onDismiss(message: Showable) {
             if let fullscreenMessage = message as? FullscreenMessage,

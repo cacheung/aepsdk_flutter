@@ -26,6 +26,8 @@ class _MyAppState extends State<MessagingPage> {
   String _messagingVersion = 'Unknown';
   List<AEPMessaging.Message> _cachedMessages = [];
 
+  final TextEditingController inputController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -89,7 +91,7 @@ class _MyAppState extends State<MessagingPage> {
   Future<void> setAutoTrack() async {
     if (_cachedMessages.isNotEmpty) {
       var message = _cachedMessages[0];
-      message.setAutoTrack(false);
+      message.setAutoTrack(true);
     }
   }
 
@@ -108,9 +110,16 @@ class _MyAppState extends State<MessagingPage> {
             getRichText(
                 'AEPMessaging extension version: ', '$_messagingVersion\n'),
             getRichText('Current Cached Messages: ', '$_cachedMessages\n'),
+            TextField(
+              controller: inputController,
+              decoration: InputDecoration(
+                labelText: 'Track action name setup in your in-app campaign',
+              ),
+            ),
             ElevatedButton(
               child: Text("MobileCore.trackAction"),
-              onPressed: () => MobileCore.trackAction('tues', data: {
+              onPressed: () =>
+                  MobileCore.trackAction(inputController.text, data: {
                 "testFullscreen": "true",
               }),
             ),

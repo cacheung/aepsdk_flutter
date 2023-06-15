@@ -25,6 +25,7 @@ class MessagingPage extends StatefulWidget {
 class _MyAppState extends State<MessagingPage> {
   String _messagingVersion = 'Unknown';
   List<AEPMessaging.Message> _cachedMessages = [];
+  
 
   @override
   void initState() {
@@ -110,7 +111,7 @@ class _MyAppState extends State<MessagingPage> {
             getRichText('Current Cached Messages: ', '$_cachedMessages\n'),
             ElevatedButton(
               child: Text("MobileCore.trackAction"),
-              onPressed: () => MobileCore.trackAction('tues', data: {
+              onPressed: () => MobileCore.trackAction('java', data: {
                 "testFullscreen": "true",
               }),
             ),

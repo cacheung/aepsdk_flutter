@@ -11,6 +11,7 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
     private let channel: FlutterMethodChannel
     private let dataBridge: SwiftFlutterAEPMessagingDataBridge
     private var messageCache = [String: Message]()
+    private var savedMessageForHandler : Message?
 
     init(channel: FlutterMethodChannel) {
         self.channel = channel
@@ -43,7 +44,7 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
         case "dismissMessage":
             return result(dismissMessage(arguments: call.arguments))
         case "handleJavascriptMessage":
-            return result(handleJavascriptMessage(arguments: call.arguments))
+            handleJavascriptMessage(arguments: call.arguments, result: result)
         case "setAutoTrack":
             return result(setAutoTrack(arguments: call.arguments))
         case "showMessage":
@@ -109,27 +110,35 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
         )
     }
 
-    private func handleJavascriptMessage(arguments: Any?) -> Any? {
-        if let args = arguments as? [String: Any],
-            let id = args["id"] as? String,
-            let name = args["name"] as? String
-        {
-            let msg = messageCache[id]
-            if msg != nil {
-                return nil
-                //          return msg!.handleJavascriptMessage(name)
+    private func handleJavascriptMessage(arguments: Any?, result: @escaping FlutterResult) -> Any? {
+
+            if let args = arguments as? [String: Any],
+                let id = args["id"] as? String,
+                let name = args["name"] as? String
+            {
+                let savedMessageForHandler = messageCache[id]
+                if savedMessageForHandler != nil {
+                    savedMessageForHandler!.handleJavascriptMessage(name) { content in
+                        
+                        if (content as? String != nil) {
+                            result(content as! String)
+                        }
+                        result(nil)
+                    
+                    }
+            
+                }
+                return FlutterError.init(
+                    code: "CACHE MISS",
+                    message: "Message has not been cached",
+                    details: nil
+                )
             }
             return FlutterError.init(
-                code: "CACHE MISS",
-                message: "Message has not been cached",
+                code: "BAD ARGUMENTS",
+                message: nil,
                 details: nil
             )
-        }
-        return FlutterError.init(
-            code: "BAD ARGUMENTS",
-            message: nil,
-            details: nil
-        )
     }
 
     private func setAutoTrack(arguments: Any?) -> FlutterError? {

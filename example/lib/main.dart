@@ -41,6 +41,16 @@ class CustomMessagingDelegate implements MessagingDelegate {
 
   @override
   bool shouldShowMessage(Showable message) {
+    var messages = AEPMessaging.Messaging.getCachedMessages().then((List<AEPMessaging.Message> msgs) {
+    var fullscreenMessage = msgs[0] as AEPMessaging.Message;
+    var result = fullscreenMessage
+        .handleJavascriptMessage('buttonClicked')
+        .then((value) => print(value));
+    });
+
+    print('--------this is at shouldShowMessage---------');
+
+  
     return true;
   }
 

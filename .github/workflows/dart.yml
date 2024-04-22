@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -48,7 +48,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -73,7 +73,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -94,7 +94,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -115,7 +115,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -136,7 +136,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -157,7 +157,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"
@@ -169,7 +169,7 @@ jobs:
       - name: Unit test
         working-directory: ./plugins/flutter_aepedgeidentity
         run: flutter test
-        
+
   job8:
     name: UserProfile unit tests
     runs-on: ubuntu-latest
@@ -178,7 +178,7 @@ jobs:
 
       - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          java-version: "17.x"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.x"

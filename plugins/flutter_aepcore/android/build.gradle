@@ -1,5 +1,5 @@
 group 'com.adobe.marketing.mobile.flutter.flutter_aepcore'
-//do we need to update this version?
+//TODO: do we need to update this version?
 version '2.0'
 
 buildscript {

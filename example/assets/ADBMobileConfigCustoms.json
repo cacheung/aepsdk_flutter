@@ -1,0 +1,19 @@
+{
+  "rules.url": "https://assets.adobedtm.com/94f571f308d5/959a617a4a15/launch-de09b8b97921-development-rules.zip",
+  "experienceCloud.org": "972C898555E9F7BC7F000101@AdobeOrg",
+  "lifecycle.sessionTimeout": 300,
+  "global.privacy": "optedin",
+  "__dev__edge.configId": "72facdb0-d8f8-4a4f-99f5-28bfcfd605f8",
+  "edge.configId": "72facdb0-d8f8-4a4f-99f5-28bfcfd605f8",
+  "edge.domain": "obumobile5.data.adobedc.net",
+  "__stage__edge.configId": "72facdb0-d8f8-4a4f-99f5-28bfcfd605f8",
+  "property.id": "PR7b5e88be4e504e33b107a41a6aabc5da",
+  "consent.default": {
+    "consents": {
+      "collect": {
+        "val": "y"
+      }
+    }
+  },
+  "build.environment": "dev"
+}

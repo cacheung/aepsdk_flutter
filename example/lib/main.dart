@@ -10,6 +10,7 @@ governing permissions and limitations under the License.
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_aepcore/flutter_aepcore.dart';
 import 'messaging.dart';
 import 'core.dart';
@@ -28,10 +29,13 @@ void main() async {
   home: HomePage(),
   ));
 
+  String configContent = await rootBundle.loadString('assets/ADBMobileConfigCustoms.json');
+
   //initialize AEP SDK
   MobileCore.setLogLevel(LogLevel.trace);
   InitOptions initOptions = InitOptions(
-    appId: "YOUR_APP_ID",
+    //appId: "94f571f308d5/959a617a4a15/launch-de09b8b97921-development",
+    filePath: configContent,
     lifecycleAutomaticTrackingEnabled: true,
     lifecycleAdditionalContextData: {"key": "value"},
     appGroupIOS: "group.com.example",

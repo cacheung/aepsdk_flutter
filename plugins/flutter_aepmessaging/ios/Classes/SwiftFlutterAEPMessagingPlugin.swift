@@ -10,7 +10,16 @@ import WebKit
 public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingDelegate {
     private let channel: FlutterMethodChannel
     private let dataBridge: SwiftFlutterAEPMessagingDataBridge
-    private var messageCache = [String: Message]()
+    
+    /// Dispatch queue used to protect against simultaneous access of messageCache from multiple threads
+    private let queue: DispatchQueue = .init(label: "com.adobe.flutter.messaging.cache")
+    
+    /// Private backing variable for thread-safe message cache
+    private var _messageCache = [String: Message]()
+    var messageCache: [String: Message] {
+        get { queue.sync { self._messageCache } }
+        set { queue.sync { self._messageCache = newValue } }
+    }
 
     init(channel: FlutterMethodChannel) {
         self.channel = channel
@@ -57,7 +66,7 @@ public class SwiftFlutterAEPMessagingPlugin: NSObject, FlutterPlugin, MessagingD
         let cachedMessages = messageCache.values.map {
             dataBridge.transformToFlutterMessage(message: $0)
         }
-        return cachedMessages
+        return Array(cachedMessages)
     }
 
     // Message Class Methods
